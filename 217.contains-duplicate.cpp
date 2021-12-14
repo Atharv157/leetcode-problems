@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode id=560 lang=cpp
+ * @lc app=leetcode id=217 lang=cpp
  *
- * [560] Subarray Sum Equals K
+ * [217] Contains Duplicate
  */
 
 // @lc code=start
