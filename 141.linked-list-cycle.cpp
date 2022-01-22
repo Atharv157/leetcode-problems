@@ -20,19 +20,14 @@ public:
         ListNode *fast = head;
         if(head == nullptr)
             return false;
-        while(true){
+        while(slow != nullptr && fast != nullptr && slow->next != nullptr && fast->next != nullptr){
             slow = slow->next;
-            if(fast->next == nullptr)
-                break;
             fast = fast->next->next;
-            if(slow != nullptr && fast != nullptr){
-                if(&slow->val == &fast->val)
-                    return true;
-            }
-            else break;
-            
+            if(slow == fast)
+                return true; 
         }
         return false;
+       ;
     }
 };
 // @lc code=end
