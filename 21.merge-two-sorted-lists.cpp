@@ -54,12 +54,9 @@ public:
 //         also if flow enters this while loop this means that sitll elements are remaining in list2 
 //         but list1 is exhausted hence we know that prev is at tail and curr is null
 //         therefore treating prev as tail below
-        while(temp){
-            cache = temp->next;
-            temp->next = nullptr;
+// therefore we just need to link tail of list1 with remaining part of list2
+        if(temp){
             prev->next = temp;
-            prev = prev->next;
-            temp = cache;
         }
         
         return dummy->next;
