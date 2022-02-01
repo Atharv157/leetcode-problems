@@ -18,8 +18,8 @@ public:
         vector<int> root(n,0);
         vector<int> rank(n,1);
         for(int i = 0;i<n; i++) root[i] = i;
-        int count = 0;
-        unordered_set<int> hashset;
+        int count = n;
+        // unordered_set<int> hashset;
         
         for(int i = 0;i<n;i++){
             for(int j = i+1; j<n; j++){
@@ -36,17 +36,20 @@ public:
                             root[rootY] = rootX;
                             rank[rootX] += 1;
                         }
+                        // initially considered count as number of nodes
+                        // each time a node is appended in set the count reduces by one
+                        count--;
                     }
                 }
             }
         }
-        for(int i = 0; i<n; i++){
-            if(hashset.count(find(i,root))<=0){
-                hashset.insert(find(i,root));
-                count++;
-            }
+        // for(int i = 0; i<n; i++){
+        //     if(hashset.count(find(i,root))<=0){
+        //         hashset.insert(find(i,root));
+        //         count++;
+        //     }
             
-        }
+        // }
         
         return count;
     }
