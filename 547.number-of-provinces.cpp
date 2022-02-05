@@ -19,8 +19,9 @@ public:
         vector<int> rank(n,1);
         for(int i = 0;i<n; i++) root[i] = i;
         int count = n;
+        // count = 0;
         // unordered_set<int> hashset;
-        
+
         for(int i = 0;i<n;i++){
             for(int j = i+1; j<n; j++){
                 if(isConnected[i][j] == 1){
@@ -38,6 +39,7 @@ public:
                         }
                         // initially considered count as number of nodes
                         // each time a node is appended in set the count reduces by one
+                        // as the whole set is to be considered as one unit
                         count--;
                     }
                 }
