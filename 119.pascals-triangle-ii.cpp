@@ -8,40 +8,31 @@
 class Solution {
     
 private:
-    unordered_map<string,int> hashmap;
-    int findValueRecursively(int row, int col){
-        string key = to_string(row)+"_"+to_string(col);
-        if(row<=1 || col == 0 || col == row)
-            return 1;
-        else{
-//             if key exists then return that val
-            if(hashmap.count(key))
-                return hashmap[key];
-// if key doesnt exist then calculate and add in the hashmap
-            int calc = findValueRecursively(row-1,col-1)+findValueRecursively(row-1,col); 
-            hashmap.insert(make_pair(key,calc));
-            return calc;  
-        }
-    }
+   vector<int> answer{1,1};
+   vector<int> temp;
 public:
-    vector<int> getRow(int rowIndex) {
-        vector<int> vect1{1};
-        vector<int> vect2{1,1};
-        if(rowIndex == 0) return vect1;
-        if(rowIndex == 1) return vect2;
-            
+     vector<int> getRow(int rowIndex) {
+        vector<int> vector1{1};
+        vector<int> vector2{1,1};
+        if(rowIndex == 0) return vector1;
+        else if(rowIndex == 1) return vector2;
         
-        vector<int> answer;
-        answer.push_back(1);
-        for(int col = 1; col<=rowIndex/2; col++){
-            answer.push_back(findValueRecursively(rowIndex,col));
-        }
+        else if(answer.size()==rowIndex+1) return answer;
+
+        temp.clear();
+        temp.push_back(1);
         
-        for(int i = answer.size() - 1; i >= 0; i--){
-            if(i == answer.size()-1 and rowIndex%2 == 0) continue;
-            else answer.push_back(answer[i]);
+        int prev = 0, next = 1;
+        
+        while(next < answer.size()){
+            temp.push_back(answer[prev]+answer[next]);
+            prev++;
+            next++;
         }
-        // answer.push_back(1);
+        temp.push_back(1);
+        answer = temp;
+        
+        getRow(rowIndex);
         
         return answer;
     }
